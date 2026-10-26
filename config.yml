@@ -1,0 +1,21 @@
+### Fichier de configuration ###
+logging: Debug
+logtime: false
+
+ # Http Service 
+server:
+  listenip: 0.0.0.0
+  port: 8080
+  protocol: http
+  #certfile: server-chain.crt
+  #keyfile: server.key
+  backurl: http://localhost:8080   # backend url 
+  usedurl: https://localhost:8443  # behind a proxy
+  #backurl: http://localhost:8080/test
+  #usedurl: https://localhost:8443/test
+  cache: true   # true for Dev , false for Production
+
+# Interface 
+webui:
+  contextpath: /
+  #contextpath: /test

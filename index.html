@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <!-- Informations -->
+        <title>Go/Vue app</title>
+        <meta name="description" content="a Solution for simple go/vue integration">
+        <meta name="keywords" content="Vue 3, Golang, Bootstrap 5">
+        <meta name="author" content="My self">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+              
+        <!-- logo icon : ../ because of /vue/home : virtual workdir is /vue -->
+        <link rel="icon" type="image/x-icon" href="../resources/img/favicon.png">
+        
+        <!-- CDN https://unpkg.com/vue 3.5 -->
+        <script src="https://unpkg.com/vue" --></script>
+        <!-- <script src="resources/js/vue.global.prod.js"></script> -->
+
+        <!-- CDN https://unpkg.com/vue-router 4.0 -->
+        <script src="https://unpkg.com/vue-router"></script>
+        <!-- <script src="resources/js/vue-router.global.prod.js"></script> -->
+
+        <!-- CDN https://unpkg.com/axios 1.13 -->
+        <script src="https://unpkg.com/axios"></script>
+        <!-- <script src="resources/js/axios.min.js"></script> -->
+
+        <!-- CDN https://unpkg.com/font-awesome@4.7.0  -->
+        <link rel="stylesheet" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="resources/css/font-awesome.min.css"> -->
+
+        <!-- CDN https://unpkg.com/bootstrap@next 5.3.8   popper@next 2.9.2 -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.8/dist/css/bootstrap.css">
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/bootstrap@5.3.8/dist/js/bootstrap.js"></script>
+        <!-- <link rel="stylesheet" href="resources/css/bootstrap.min.css"> -->
+        <!-- <script src="resources/js/popper.min.js"></script> -->
+        <!-- <script src="resources/js/bootstrap.min.js"></script> -->
+
+        <!-- CDN https://unpkg.com/moment  2.30.1  -->
+        <script src="https://unpkg.com/moment"></script>
+        <!-- <script src="resources/js/moment.min.js"></script> -->
+        <!-- <script src="resources/js/locale/fr.js"></script> -->
+ 
+        <!-- Our global css and js -->
+        <link rel="stylesheet" href="resources/css/my_global.css">
+        <script src="resources/js/my_global.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="app">
+            <!-- Message/splash screen : initial -->
+            <h4>Chargement en cours...</h4>
+        </div>
+
+        <!-- when long vertical scrolling page -->
+        <button id="backToTop">↑</button>
+
+        <!-- *** The components vue3.js : embed *** -->
+
+            <!-- Template of single page, $root -->
+            <v-embed src="vues/app.vue"></v-embed>
+            <v-embed src="vues/mixins.vue"></v-embed>
+       
+            <!-- General -->
+            <v-embed src="vues/header.vue"></v-embed>
+            <v-embed src="vues/param.vue"></v-embed>
+            <v-embed src="vues/home.vue"></v-embed>
+   
+            <!-- Function A -->
+            <!-- Etc. --> 
+            
+            <!-- Vue router et launcher of vue.app -->
+            <v-embed src="vues/routes.vue"></v-embed>
+
+        <!-- *** End *** --> 
+
+        <!-- Avoid <script> in body -->
+
+    </body>
+</html>
