@@ -10,8 +10,9 @@ The main the work of integration go/vue is done into index.html  and  rest/vembe
 
 As a normal Golang application, nothing else.
 
-With static libraries: 
-- CGO_ENABLED=0 go build -o proxy.bin
+With static libraries and ressources: 
+- check cache is true in config.yml
+- CGO_ENABLED=0 go build -o go_vue.bin
 
 Full update of go part
 - go get -u all

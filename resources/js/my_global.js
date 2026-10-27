@@ -38,7 +38,7 @@ function confirme(msg,callback) {
 
   // Créer les boutons
   const btnYes = document.createElement("button")
-  btnYes.textContent = "Oui"
+  btnYes.textContent = "Confirm"
   btnYes.onclick = function () {
      // Disparition
      overlay.style.display = "none"
@@ -48,7 +48,7 @@ function confirme(msg,callback) {
   }
 
   const btnNo = document.createElement("button")
-  btnNo.textContent = "Non"
+  btnNo.textContent = "Cancel"
   btnNo.onclick = function () {
      // Disparition
      overlay.style.display = "none"

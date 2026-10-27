@@ -3,6 +3,9 @@ package main
 import (
 	"context"
 	"crypto/tls"
+	"embed"
+	_ "embed"
+	"io/fs"
 	"main/rest"
 	"main/tools"
 	"net/http"
@@ -10,6 +13,11 @@ import (
 	"os/signal"
 	"time"
 )
+
+// static web server content embed in binary.
+//
+//go:embed resources/*
+var resources embed.FS
 
 func main() {
 
@@ -24,24 +32,36 @@ func main() {
 	path := tools.Cfg.WebUi.ContextPath
 
 	// Http serve static resources ( js, css, img, fonts )
-	fs := http.FileServer(http.Dir("resources/"))
-	http.Handle(path+"/resources/", http.StripPrefix(path+"/resources/", fs))
+	var fsr http.Handler
+	if tools.Cfg.WebUi.Cache {
+		sfs, e := fs.Sub(resources, "resources")
+		if e != nil {
+			tools.Fatal("FS Server fail :  %v", e)
+		}
+		fsr = http.FileServer(http.FS(sfs))
+	} else {
+		fsr = http.FileServer(http.Dir("resources"))
+	}
+	http.Handle(path+"/resources/", http.StripPrefix(path+"/resources/", fsr))
 
-	// Http serve static vues
-	fv := http.FileServer(http.Dir("vues/"))
-	http.Handle(path+"/vues/", http.StripPrefix(path+"/vues/", fv))
+	// Http serve static vues  ( debug ? )
+	//fv := http.FileServer(http.Dir("vues/"))
+	//http.Handle(path+"/vues/", http.StripPrefix(path+"/vues/", fv))
 
 	// Http serve Rest API  /api/*
 	http.Handle(path+"/api/", http.StripPrefix(path+"/api/", http.HandlerFunc(rest.ServeRestApi)))
 
 	// Http server refresh and favoris of browser on /vue/* routes
-	http.Handle(path+"/vue/", http.StripPrefix(path+"/vue/", http.HandlerFunc(rest.ServeVue)))
+	http.Handle(path+"/vue/", http.StripPrefix(path+"/vue/", http.HandlerFunc(ServeVue)))
+
+	// Assemble la single page ( en prod 1 fois, en dev, une 1ere fois )
+	InitSpa()
 
 	// Point d'entree, Accueil ( single page ) et autres  /  => /index.html
-	http.Handle(path+"/", http.StripPrefix(path+"/", http.HandlerFunc(rest.ServeIndex)))
+	http.Handle(path+"/", http.StripPrefix(path+"/", http.HandlerFunc(ServeIndex)))
 	if path != "" {
 		// Wrong context path
-		http.Handle("/", http.StripPrefix("/", http.HandlerFunc(rest.ServeNone)))
+		http.Handle("/", http.StripPrefix("/", http.HandlerFunc(ServeNone)))
 	}
 
 	// Serveur HTTP

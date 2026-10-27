@@ -13,9 +13,9 @@ server:
   usedurl: https://localhost:8443  # behind a proxy
   #backurl: http://localhost:8080/test
   #usedurl: https://localhost:8443/test
-  cache: true   # true for Dev , false for Production
 
 # Interface 
 webui:
   contextpath: /
   #contextpath: /test
+  cache: false   # false for Dev , true for binary-production
