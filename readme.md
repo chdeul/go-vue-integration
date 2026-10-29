@@ -4,7 +4,7 @@ This is an example of Golang web application working with vue.js, and REST Api
 
 It load .vue files into a golang project, __SIMPLER__ than nodejs, vite.js and so on
 
-The main the work of integration go/vue is done into index.html  and  rest/vembed.go 
+The main the work of integration go/vue is done into index.html  and  vembed.go 
 
 ## Build
 
@@ -33,7 +33,7 @@ And for this example :
 
 ## How to 
 
-To add a view or component
+To add a view or component vue.js
 
 1. Create vue file by copying, or based on model described just below (.vue file format )
 2. Adapt the name of component, and name of template : "#ui-home" & \<template id="ui-home"\>
@@ -45,10 +45,10 @@ To add a view or component
 
 To add a REST Controler
 
-1. add Route (method,path/controler) into restApi.go : in array routes 
-2. add a controller in a new file.go : func controler(w http.ResponseWriter, r *http.Request) 
+1. add Route (method,path,controler) into restApi.go : in array routes 
+2. add a controller in a new rest/file.go : func controler(w http.ResponseWriter, r *http.Request) 
 
-> See sources to see how are managed vue router and mixins
+> Refer sources to see how are managed vue router and mixins
 
 ## Limits
 
@@ -65,7 +65,7 @@ To add a REST Controler
 * You can use CDN links to include opensource js/css libraries, if on-line environment
 * ELSE -> You must copy new version of css/js libraries yourself into "/resources"
 
-> Thus, your external libraries are well controlled   ( exactly what you needs, minimal, ligth ) 
+> Thus, your external libraries are well controlled   ( exactly what you needs, minimal, light ) 
 
 #### .vue file format
 
@@ -96,7 +96,8 @@ To add a REST Controler
 
 ## Standard alternative
 
-* Use nodejs, npm, vite.js, node_modules --> heavy, learning curve ++
+* Use nodejs, npm, vite.js, node_modules --> heavy, learning curve++
 * npm run dev  and  build --> 2 process to manage, dist packaging , some differences dev / prod,  some difficulties 
+* go:embed  dist/*   files into go binary for production
 
 > This is better for complex GUI, with a lot of dependencies

@@ -55,38 +55,13 @@ func LoadConfig(dir string) {
 	if Cfg.WebUi.ContextPath == "/" {
 		Cfg.WebUi.ContextPath = ""
 	}
-
-	// Pas de date et heure sur les log
+	// Pas de date et heure sur les log et coloré (dev)
 	if !Cfg.LogTime {
+		LogWithColor(true)
 		log.SetFlags(0)
 	}
-
 	// Positionne le niveau de log
-	switch Cfg.Logging {
-	case "None":
-		LoggingLevel = NoneLevel
-	case "Panic":
-		LoggingLevel = PanicLevel
-	case "Error":
-		LoggingLevel = ErrorLevel
-	case "Warn":
-		LoggingLevel = WarnLevel
-	case "Info":
-		LoggingLevel = InfoLevel
-	case "Log":
-		LoggingLevel = LogLevel
-	case "Debug":
-		LoggingLevel = DebugLevel
-	case "Default":
-	case "":
-		Cfg.Logging = "Default"
-	default:
-		Warn("Niveau de log inconnu : %s", Cfg.Logging)
-		Cfg.Logging = "Default"
-	}
-	if Cfg.Logging != "Default" {
-		Info("Niveau de log : %s", Cfg.Logging)
-	}
+	SetLogLevel(Cfg.Logging)
 }
 
 // Charge une configuration yaml

@@ -156,7 +156,7 @@ func ServeVue(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, ret, http.StatusSeeOther)
 }
 
-// Traite le point d'entrée en html
+// Traite requetes en entree ne correspondant pas au context path
 func ServeNone(w http.ResponseWriter, r *http.Request) {
 
 	// No found
