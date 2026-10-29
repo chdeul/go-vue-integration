@@ -57,11 +57,13 @@ func TestCheck(t *testing.T) {
 		t.Fail()
 	}
 	Check(nil)
+	CheckError(nil)
 	Check(-1)
 	Check(t)
 	Check("")
 	Check(0)
 	Check("abc")
+	CheckError(fmt.Errorf("erreur"))
 	Check(fmt.Errorf("erreur"))
 	Check(fmt.Errorf("erreur"), nil)
 	obj := struct {

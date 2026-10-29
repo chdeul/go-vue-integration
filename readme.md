@@ -1,17 +1,27 @@
-# a Solution for "simple" go-vue-integration
+# a  "simple" Solution for go / vue.js  integration
 
 This is an example of Golang web application working with vue.js, and REST Api
 
-It load .vue files into a golang project, __SIMPLER__ than nodejs, vite.js and so on
+* It load .vue files into a golang project, 
+* It is __SIMPLER__ than nodejs, vite.js and so on,
+* It use vue router to dispatch views into single page
+* It use a Simple REST API Router in go backend
+* Simple Tools : to load a config file, logging, tests assertions
+* Simple bootstrap design, alert and confirm js-functions like
+* Ready to developpement : debug sources files .vue in browser, 
+* Uupdate vue sources without restart go, refresh managed at backend
+* Embed resources into binary go file at production
 
-The main the work of integration go/vue is done into index.html  and  vembed.go 
+The main the work of integration go/vue is done into __index.html__  and  __vembed.go__ 
+- the index.html is your single page , build by yourself,
+- \<v-embed \> tag includes vue components ( set of files.vue )
 
 ## Build
 
 As a normal Golang application, nothing else.
 
 With static libraries and ressources: 
-- check cache is true in config.yml
+- check cache is true in config.yml to embed all in binary
 - CGO_ENABLED=0 go build -o go_vue.bin
 
 Full update of go part
@@ -22,6 +32,7 @@ Full update of go part
 
 * Golang      ( Go Language development )
 * Vue 3
+* Go Yaml V4
 
 And for this example : 
 * Bootstrap css
@@ -29,7 +40,6 @@ And for this example :
 * Moment js 
 * Axios
 * Popper js
-* Go Yaml V4
 
 ## How to 
 
@@ -78,10 +88,13 @@ To add a REST Controler
 ```
 <script>
  app.component('ui-home', {
-
-        template : "#ui-home",
+    template : "#ui-home",
+    mixins : [ commons ],
+    data () { return { ... } }
+    methods : 
+    ..........
+    etc
  }
-   ..........
 //# sourceURL=http://localhost:8080/vues/home.vue
 </script>
 

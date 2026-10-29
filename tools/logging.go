@@ -118,6 +118,14 @@ func Fatal(msg string, args ...any) {
 }
 
 // Checks a value and log error message
+func CheckError(val error, args ...any) bool {
+	if val != nil {
+		return Check(val, args...)
+	}
+	return true
+}
+
+// Checks a value and log error message
 func Check(val any, args ...any) bool {
 
 	switch v := val.(type) {
@@ -146,6 +154,14 @@ func Check(val any, args ...any) bool {
 			showError(val, args...)
 			return false
 		}
+	}
+	return true
+}
+
+// Checks a value and log error message
+func AssertError(val error, args ...any) bool {
+	if val != nil {
+		return CheckError(val, args...)
 	}
 	return true
 }
