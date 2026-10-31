@@ -17,6 +17,10 @@ The main the work of integration go/vue is done into __index.html__  and  __vemb
 - the index.html is your single page , build by yourself,
 - \<v-embed \> tag includes vue components ( set of files.vue )
 
+## Architecture
+
+![Archi](./resources/img/archi.png)
+
 ## Build
 
 As a normal Golang application, nothing else.
