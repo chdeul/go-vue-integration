@@ -8,12 +8,15 @@ import (
 	"strings"
 )
 
-type myReqCtx struct {
+// Used only as type for myReqCtx
+type myReqCtxTag struct {
 }
 
-// Données contexte de requête
-type agremReqCtx struct {
-	path []string // Url et param
+// Données contexte de requête : set in route parsing, used in handler
+type MyReqCtx struct {
+	Path   []string // Url and route param
+	MyData string   // Auth, Roles data for example..
+	// etc.
 }
 
 // Une route d'entrée d'API
@@ -31,6 +34,9 @@ var routes = []route{
 	Route("GET", "exemple", apiExemple),
 	Route("POST", "exemple", apiExemple),
 
+	// Exemple avec pattern matching golang (word, decimal number)
+	Route("GET", "exemple/(\\w+)/print/(\\d+)", apiExemple),
+
 	// TODO
 	// List of API Paths and theirs controllers
 	// REST  /api/xxxxx/...
@@ -42,10 +48,9 @@ func Route(method, pattern string, handler http.HandlerFunc) route {
 	return route{method, regexp.MustCompile("^" + pattern + "$"), handler}
 }
 
-// Extrait un element (matching) de la route
-func getField(r *http.Request, index int) string {
-	fields := r.Context().Value(myReqCtx{}).(agremReqCtx).path
-	return fields[index]
+// Extrait les infos de mon contexte de la requete ou route
+func GetMyCtx(r *http.Request) MyReqCtx {
+	return r.Context().Value(myReqCtxTag{}).(MyReqCtx)
 }
 
 // Aiguille sur la bonne route
@@ -75,8 +80,8 @@ func ServeRestApi(w http.ResponseWriter, r *http.Request) {
 				allow = append(allow, route.method)
 				continue
 			}
-			// Contexte de requete : avec url
-			reqCtx := agremReqCtx{path: matches[1:]}
+			// Contexte de requete : avec patterm match de la route
+			reqCtx := MyReqCtx{Path: matches[1:], MyData: "donnée"}
 
 			// Auth  et Profil d'accès  gérable ici
 			//    Jeton d'auth présent Dans Header ou Cookie
@@ -88,8 +93,10 @@ func ServeRestApi(w http.ResponseWriter, r *http.Request) {
 			//    http.Error(w, "Vous n'avez pas les droits", http.StatusForbidden)
 			//    return
 
-			// aiguille vers la methode, avec le contexte de requete
-			ctx := context.WithValue(r.Context(), myReqCtx{}, reqCtx)
+			// Mettre les droits dans reqCtx par exemple
+
+			// Aiguille vers la methode, avec le contexte de requete
+			ctx := context.WithValue(r.Context(), myReqCtxTag{}, reqCtx)
 			route.handler(w, r.WithContext(ctx))
 			return
 		}

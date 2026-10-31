@@ -6,7 +6,7 @@ This is an example of Golang web application working with vue.js, and REST Api
 * It is __SIMPLER__ than nodejs, vite.js and so on,
 * It use vue router to dispatch views into single page
 * It use a Simple REST API Router in go backend
-* Simple Tools : to load a config file, logging, tests assertions
+* Simple tooling included : config file, logging, checks
 * Simple bootstrap design, alert and confirm js-functions like
 * Ready to developpement : debug sources files .vue in browser, 
 * Uupdate vue sources without restart go, refresh managed at backend
@@ -53,12 +53,13 @@ To add a view or component vue.js
 
 > No import to add at the head of views to use components, but the order of \<v-embed\> is important in case of dependencies on views / components 
 
+> Refer sources to see how are managed vue router and mixins
+
 To add a REST Controler
 
 1. add Route (method,path,controler) into restApi.go : in array routes 
 2. add a controller in a new rest/file.go : func controler(w http.ResponseWriter, r *http.Request) 
 
-> Refer sources to see how are managed vue router and mixins
 
 ## Limits
 

@@ -56,7 +56,7 @@ a:hover {
     box-shadow : 0 5px 12px rgba(0,0,0,0.6);
 }
 .modale::before {
-  content: "> Confirmation";
+  content: "> Confirm";
   font-size:larger;
   font-weight: bold;
   color: white;
