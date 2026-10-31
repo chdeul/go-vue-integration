@@ -8,8 +8,9 @@ This is an example of Golang web application working with vue.js, and REST Api
 * It use a Simple REST API Router in go backend
 * Simple tooling included : config file, logging, checks
 * Simple bootstrap design, alert and confirm js-functions like
+* Simple Rest API path routing to controlers in golang web server 
 * Ready to developpement : debug sources files .vue in browser, 
-* Uupdate vue sources without restart go, refresh managed at backend
+* Update vue sources without restart go, refresh managed at backend
 * Embed resources into binary go file at production
 
 The main the work of integration go/vue is done into __index.html__  and  __vembed.go__ 
