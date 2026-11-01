@@ -1,21 +1,14 @@
-# a  "simple" Solution for go / vue.js  integration
+# A  "simple" Solution for Go / Vue.js  integration
 
-This is an example of Golang web application working with vue.js, and REST Api
 
-* It load .vue files into a golang project, 
-* It is __SIMPLER__ than nodejs, vite.js and so on,
-* It use vue router to dispatch views into single page
-* It use a Simple REST API Router in go backend
-* Simple tooling included : config file, logging, checks
-* Simple bootstrap design, alert and confirm js-functions like
-* Simple Rest API path routing to controlers in golang web server 
-* Ready to developpement : debug sources files .vue in browser, 
-* Update vue sources without restart go, refresh managed at backend
-* Embed resources into binary go file at production
+This is an example of __Go__ web application working with __Vue.js__ and __REST Api__
+
+|It loads .vue files into a Go project,<br>It is __SIMPLER__ than Nodejs, Vite.js and others tools,<br>It uses vue router to dispatch views into single page<br>It uses a simple REST Api router in Go backend<br>Simple tooling is included sush as config file, logging and checks &nbsp; &nbsp; &nbsp;  <br>Simple bootstrap design, alert and confirm js-functions like<br>Simple REST Api path routing to controlers in Go web server<br>Ready for dev : debug sources files .vue in browser and Go IDE<br>Update vue sources without restarting Go : simple refresh<br>Resources are embed  into binary Go file for production|![Simplicity](./resources/img/simplicity.png)|
+|---|---|
 
 The main the work of integration go/vue is done into __index.html__  and  __vembed.go__ 
-- the index.html is your single page , build by yourself,
-- \<v-embed \> tag includes vue components ( set of files.vue )
+- the __index.html__ is your single page , build by yourself,
+- __\<v-embed \>__ tag includes vue components ( set of files.vue )
 
 ## Architecture
 
@@ -26,7 +19,7 @@ The main the work of integration go/vue is done into __index.html__  and  __vemb
 As a normal Golang application, nothing else.
 
 With static libraries and ressources: 
-- check cache is true in config.yml to embed all in binary
+- check that __cache__ is true in config.yml : to embed all in binary
 - CGO_ENABLED=0 go build -o go_vue.bin
 
 Full update of go part
