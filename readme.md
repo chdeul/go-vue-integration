@@ -1,10 +1,8 @@
 # A  "simple" Solution for Go / Vue.js  integration
 
-
-This is an example of __Go__ web application working with __Vue.js__ and __REST Api__
-
-|It loads .vue files into a Go project,<br>It is __SIMPLER__ than Nodejs, Vite.js and others tools,<br>It uses vue router to dispatch views into single page<br>It uses a simple REST Api router in Go backend<br>Simple tooling is included sush as config file, logging and checks &nbsp; &nbsp; &nbsp;  <br>Simple bootstrap design, alert and confirm js-functions like<br>Simple REST Api path routing to controlers in Go web server<br>Ready for dev : debug sources files .vue in browser and Go IDE<br>Update vue sources without restarting Go : simple refresh<br>Resources are embed  into binary Go file for production|![Simplicity](./resources/img/simplicity.png)|
+|This is an example of __Go__ web application working with __Vue.js__ and __REST Api__ | Main feature |
 |---|---|
+| - It loads .vue files into a Go project,<br> - It is __SIMPLER__ than Nodejs, Vite.js and others tools,<br> - It uses vue router to dispatch views into single page<br> - It uses a simple REST Api router in Go backend<br> - Simple tooling is included sush as config file, logging and checks &nbsp; &nbsp; &nbsp;  <br> - Simple bootstrap design, alert and confirm js-functions like<br> - Simple REST Api path routing to controlers in Go web server<br> - Ready for dev : debug sources files .vue in browser and Go IDE<br> - Update vue sources without restarting Go : simple refresh<br> - Resources are embed  into binary Go file for production | ![Simplicity](./resources/img/simplicity.png)|
 
 The main the work of integration go/vue is done into __index.html__  and  __vembed.go__ 
 - the __index.html__ is your single page , build by yourself,
