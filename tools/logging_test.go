@@ -80,6 +80,12 @@ func TestAssert(t *testing.T) {
 		t.Fail()
 	}
 }
+func TestAssertError(t *testing.T) {
+	defer Recover()
+	if AssertError(fmt.Errorf("an error")) {
+		t.Fail()
+	}
+}
 
 func TestPanic(t *testing.T) {
 	defer func() {

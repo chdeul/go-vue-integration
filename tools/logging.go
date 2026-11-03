@@ -159,9 +159,9 @@ func Check(val any, args ...any) bool {
 }
 
 // Checks a value and log error message
-func AssertError(val error, args ...any) bool {
-	if val != nil {
-		return CheckError(val, args...)
+func AssertError(err error, args ...any) bool {
+	if !CheckError(err, args...) {
+		panic(err)
 	}
 	return true
 }
@@ -194,7 +194,7 @@ func showError(val any, args ...any) {
 
 	var ok bool
 	var msg string
-	if len(args) > 1 {
+	if len(args) >= 1 {
 		if msg, ok = args[0].(string); ok {
 			msg = fmt.Sprintf(msg, args[1:]...)
 		} else {
